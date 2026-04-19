@@ -12,11 +12,11 @@ async def create_cash_entry(db: AsyncSession, data: CashEntriesCreate):
     return obj
 
 
-async def list_cash_entries(db: AsyncSession, skip: int = 0, limit: int = 0):
+async def list_cash_entries(db: AsyncSession, skip: int = 0, limit: int = 10):
     data = await db.execute(
         select(CashEntries)
-        .offset(skip)
         .limit(limit)
+        .offset(skip)
         .order_by(CashEntries.created_at.desc())
     )
     return data.scalars().all()

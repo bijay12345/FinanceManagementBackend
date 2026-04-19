@@ -16,6 +16,7 @@ async def create_cash_entries(
     return await service.create_cash_entry(db, payload)
 
 
-@router.get("/", response_model=CashEntriesResponse, status_code=200)
+@router.get("/", response_model=list[CashEntriesResponse])
 async def list_cash_entries(db: AsyncSession = Depends(get_db)):
-    return service.list_cash_entries(db)
+    data = await service.list_cash_entries(db)
+    return data

@@ -12,7 +12,7 @@ port = 3306
 database = "budget_management_backend"
 DATABASE_URL = f"mysql+aiomysql://{user}:{password}@{host}:{port}/{database}"
 
-engine = create_async_engine(DATABASE_URL, echo=True)
+engine = create_async_engine(DATABASE_URL)
 
 
 AsyncSessionLocal = async_sessionmaker(bind=engine, expire_on_commit=False)
