@@ -13,7 +13,6 @@ load_dotenv()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     DATABASE_URL = os.getenv("PROD_DB")
-    print(DATABASE_URL)
 
     app.state.engine = create_async_engine(
         DATABASE_URL, pool_size=10, max_overflow=20, echo=False
